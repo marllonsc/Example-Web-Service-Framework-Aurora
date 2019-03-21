@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="ProducaoDefectsInfoAPI">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <property name="context-root" value="ProducaoDefectsInfoAPI"/>
+        <property name="java-output-path" value="/ProducaoDefectsInfoAPI/build/classes"/>
+    </wb-module>
+</project-modules>
