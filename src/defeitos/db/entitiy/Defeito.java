@@ -1,4 +1,4 @@
-package defeitos.rest.api;
+package defeitos.db.entitiy;
 
 import java.io.Serializable;
 import java.util.Date;

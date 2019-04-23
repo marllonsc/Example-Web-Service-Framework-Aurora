@@ -1,11 +1,14 @@
 package defeitos.rest.api;
 
-import java.sql.SQLException;
-import java.util.List; 
-import javax.ws.rs.GET; 
-import javax.ws.rs.Path; 
-import javax.ws.rs.Produces; 
-import javax.ws.rs.core.MediaType; 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import defeitos.db.DAO.DefeitoDAO; 
 
 @Path("/RestServiceDesfeitos") 
 public class RestServiceDesfeitos {
@@ -14,14 +17,37 @@ public class RestServiceDesfeitos {
 
 	@GET
 	@Path("/defeitos")
-	@Produces(MediaType.APPLICATION_XML)
-	public List<Defeito> getDefeitos() {
-		try {
-			return dao.getDefeitos();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
-		}
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getDefeitos() {
+		//			return dao.getDefeitos();
+		return Response.ok() //200
+				.entity(dao.getDefeitos())
+				.header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+				.allow("OPTIONS").build();
+	}
+	
+	
+	@POST
+	@Path("/setText")
+	@Consumes(MediaType.TEXT_PLAIN)
+	public Response setText(String texto) {
+		return Response.ok() //200
+				.entity(dao.salveTexto(texto))
+				.header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+				.allow("OPTIONS").build();
+	}
+	
+	@GET
+	@Path("/getText")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response setGet() {
+		return Response.ok() //200
+		.entity(dao.getTexto())
+		.header("Access-Control-Allow-Origin", "*")
+		.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+		.allow("OPTIONS").build();
 	}
 	
 }
