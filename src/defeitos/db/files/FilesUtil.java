@@ -47,7 +47,7 @@ public class FilesUtil {
 			while ((linha = entrada.readLine()) != null) {
 				texto = texto +" "+(linha) ;
 			}
-			System.out.println("information found!");
+//			System.out.println("information found!");
 			entrada.close();
 			return texto;
 		} catch (IOException e) {
@@ -76,7 +76,7 @@ public class FilesUtil {
 	private static List<String> search(File file, String filename) {
 
 		if (file.isDirectory()) {
-		  System.out.println("Searching directory ... " + file.getAbsoluteFile());
+//		  System.out.println("Searching directory ... " + file.getAbsoluteFile());
 		  List<String> result = new ArrayList<String>();
 			
 		    if (file.canRead()) {

@@ -9,15 +9,15 @@ import defeitos.db.entitiy.Defeito;
 import defeitos.db.entitiy.Texto;
 import defeitos.db.files.FilesUtil;
 import framework.aurora.db.persistence.BaseDao;
-import framework.aurora.db.tools.DataBaseEnum;
 
-public class DefeitoDAO extends BaseDao<Object> {
+public class DefeitoDAO extends BaseDao<Defeito> {
 
 	public DefeitoDAO() {
-		super(DataBaseEnum.ORACLE, "Reports", Object.class);
+		super(Defeito.class);
 	}
 
 	public List<Defeito> getDefeitos() {
+		System.out.println("Information loading..............................................");
 		List<Defeito> defeitos = new ArrayList<Defeito>();
 		String equipe = "";
 		Defeito def;
@@ -68,7 +68,7 @@ public class DefeitoDAO extends BaseDao<Object> {
 		}
 
 		posClose(result);
-
+		System.out.println("Information loaded!");
 		return defeitos;
 	}
 
@@ -106,7 +106,7 @@ public class DefeitoDAO extends BaseDao<Object> {
 	private void posClose(ResultSet rs) {
 		try {
 			rs.close();
-			System.out.println("Conexao Fechada!");
+		//	System.out.println("Conexao Fechada!");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
