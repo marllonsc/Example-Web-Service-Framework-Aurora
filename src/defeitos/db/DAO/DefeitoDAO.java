@@ -3,6 +3,7 @@ package defeitos.db.DAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import defeitos.db.entitiy.Defeito;
@@ -17,7 +18,7 @@ public class DefeitoDAO extends BaseDao<Defeito> {
 	}
 
 	public List<Defeito> getDefeitos() {
-		System.out.println("Information loading..............................................");
+		System.out.println("Information loading.............................................. - " +  new Date());
 		List<Defeito> defeitos = new ArrayList<Defeito>();
 		String equipe = "";
 		Defeito def;
@@ -60,15 +61,10 @@ public class DefeitoDAO extends BaseDao<Defeito> {
 				addTotal(defeitos, total);
 
 			} catch (SQLException e) {
-				posClose(result);
 				e.printStackTrace();
-			} finally {
-				posClose(result);
-			}
+			} 
 		}
-
-		posClose(result);
-		System.out.println("Information loaded!");
+		System.out.println("Information loaded! - " +  new Date());
 		return defeitos;
 	}
 
@@ -103,14 +99,6 @@ public class DefeitoDAO extends BaseDao<Defeito> {
 		defeitos.add(def);
 	}
 
-	private void posClose(ResultSet rs) {
-		try {
-			rs.close();
-		//	System.out.println("Conexao Fechada!");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
 
 	public Boolean salveTexto(String texto) {
 		return new FilesUtil().geraArquivo(texto);
